@@ -1,0 +1,73 @@
+name: obsstudio
+version: 0.8-git  # the version of the snap
+summary: Open Broadcaster Software - obsproject.com
+description: Open Broadcaster Software is free and open source software for video recording and live streaming.
+confinement: devmode  # use "strict" to enforce system access only via declared interfaces
+
+apps:
+    obs-studio:
+        command: obs-studio
+
+parts:
+    obs-studio:
+        after: [ ffmpeg ]
+        plugin: cmake
+        source: git://github.com/jp9000/obs-studio
+        source-type: git
+        #configflags:
+        build-packages:
+            - build-essential
+            - checkinstall
+            - cmake
+            - libcurl4-openssl-dev
+            - libfontconfig1-dev
+            - libfreetype6-dev
+            - libgl1-mesa-dev
+            - libjack-jackd2-dev
+            - libqt5x11extras5-dev
+            - libudev-dev
+            - libv4l-dev
+            - libx11-dev
+            - libx264-dev
+            - libxcb-shm0-dev
+            - libxcb-xinerama0-dev
+            - libxcomposite-dev
+            - libxinerama-dev
+            - pkg-config
+            - qtbase5-dev
+        #stage-packages:
+    ffmpeg:
+        plugin: autotools
+        configflags: [--disable-ffplay, --disable-ffserver, --disable-ffprobe, --enable-gpl, --enable-libass, --enable-libfreetype, --enable-libmp3lame, --enable-libopus, --enable-libtheora, --enable-libvorbis, --enable-libvpx, --enable-libx264, --enable-libx265, --enable-nonfree]
+        source: git://source.ffmpeg.org/ffmpeg.git
+        source-type: git
+        build-packages:
+            - autoconf
+            - automake
+            - build-essential
+            - cmake
+            - g++
+            - git
+            - libass-dev
+            - libfreetype6-dev
+            - libmp3lame-dev
+            - libopus-dev
+            - libsdl1.2-dev
+            - libtheora-dev
+            - libtool
+            - libva-dev
+            - libvdpau-dev
+            - libvorbis-dev
+            - libvpx-dev
+            - libx264-dev
+            - libx265-dev
+            - libxcb-shm0-dev
+            - libxcb-xfixes0-dev
+            - libxcb1-dev
+            - make
+            - pkg-config
+            - texinfo
+            - yasm
+            - zlib1g-dev
+        stage-packages:
+            - x265
