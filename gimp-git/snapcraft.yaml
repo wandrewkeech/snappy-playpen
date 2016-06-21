@@ -18,7 +18,7 @@ parts:
   babl: 
     source: git://git.gnome.org/babl
     plugin: autotools
-    configflags: [ --disable-docs, --disable-shared ]
+    configflags: [--disable-docs, --disable-shared]
     build-packages:
       - autoconf
       - build-essential
@@ -65,7 +65,7 @@ parts:
       - python3-pydot
       - ruby
     #stage-packages:
-    after: [ libmypaint, babl ]
+    after: [libmypaint, babl]
   gimp:
     source: git://git.gnome.org/gimp
     plugin: autotools
@@ -165,7 +165,7 @@ parts:
       - zlib1g-dev
     stage-packages:
       - gimp-gmic
-    after: [ babl, gegl, libmypaint ]
+    after: [babl, gegl, libmypaint]
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
@@ -177,4 +177,4 @@ parts:
       - libpng12-dev
       - librsvg2-dev
       - python-gi
-    after: [ babl ]
+    after: [babl]
