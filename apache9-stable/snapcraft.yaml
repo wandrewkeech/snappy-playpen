@@ -1,0 +1,34 @@
+name: apache-httpd
+version: "2.4.x"
+summary: An open-source HTTP server for modern operating systems
+description: |
+  The Apache HTTP Server Project is an effort to develop and maintain an
+  open-source HTTP server for modern operating systems including UNIX and
+  Windows.  The goal of this project is to provide a secure, efficient and
+  extensible server that provides HTTP services in sync with the current HTTP
+  standards.
+
+  The Apache HTTP Server ("httpd") was launched in 1995 and it has been the most
+  popular web server on the Internet since April 1996.  It has celebrated its
+  20th birthday as a project in February 2015.
+
+  The Apache HTTP Server is a project of The Apache Software Foundation
+confinement: devmode
+    # http://httpd.apache.org/docs/2.4/install.html <- see for build/stage -packages
+apps:
+  # Apache daemon
+  apache:
+    command: apachectl start -DFOREGROUND
+    stop-command: apachectl stop
+    daemon: simple
+    plugs: [network, network-bind]
+
+parts:
+  apache:
+    source: https://github.com/apache/httpd/tree/2.4.x
+    plugin: autotools
+    configflags:
+
+    build-packages:
+
+    stage-packages:
