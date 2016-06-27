@@ -28,10 +28,10 @@ parts:
     source: git://git.gnome.org/gegl
     plugin: autotools
     configflags: 
-      - --enable-gtk-doc-html=no
       - --disable-shared
-      - --enable-workshop
       - --enable-binreloc
+      - --enable-gtk-doc-html=no
+      - --enable-workshop
     build-packages:
       - autoconf
       - build-essential
@@ -71,9 +71,9 @@ parts:
     plugin: autotools
     configflags: 
       - --disable-gtk-doc
+      - --disable-python
       - --disable-shared
       - --enable-binreloc
-      - --disable-python
     build-packages:
       - autoconf-archive
       - build-essential
@@ -152,13 +152,10 @@ parts:
       - patchutils
       - pkg-config
       - poppler-data
-      - python-cairo-dev
       - python-gobject-2
       - python-gobject-2-dev
       - python-gtk2-dev
       - python-pkg-resources
-      - python-scour
-      - python-six
       - python2.7-dev
       - sgml-data
       - xsltproc
