@@ -32,6 +32,7 @@ parts:
       - --enable-binreloc
       - --enable-gtk-doc-html=no
       - --enable-workshop
+    after: [libmypaint, babl]
     build-packages:
       - autoconf
       - build-essential
@@ -65,7 +66,6 @@ parts:
       - python3-pydot
       - ruby
     #stage-packages:
-    after: [libmypaint, babl]
   gimp:
     source: git://git.gnome.org/gimp
     plugin: autotools
@@ -74,6 +74,7 @@ parts:
       - --disable-python
       - --disable-shared
       - --enable-binreloc
+    after: [babl, gegl, libmypaint, gtkconf]
     build-packages:
       - autoconf-archive
       - build-essential
@@ -162,10 +163,15 @@ parts:
       - zlib1g-dev
     stage-packages:
       - gimp-gmic
-    after: [babl, gegl, libmypaint]
+  gtkconf:
+    source: https://github.com/dplanella/gtkconf.git
+    plugin: make
+    after: [babl,gegl,libmypaint]
+    build-packages: [dpkg-dev]
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
+    after: [babl]
     build-packages:
       - build-essential
       - intltool
@@ -174,4 +180,3 @@ parts:
       - libpng12-dev
       - librsvg2-dev
       - python-gi
-    after: [babl]
