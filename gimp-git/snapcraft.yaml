@@ -113,6 +113,7 @@ parts:
       - libffi-dev
       - libfontconfig1-dev
       - libgdk-pixbuf2.0-doc
+      - libgegl-dev
       - libgfortran3
       - libgs-dev
       - libgs9
