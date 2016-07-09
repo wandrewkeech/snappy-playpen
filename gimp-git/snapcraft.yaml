@@ -12,7 +12,8 @@ confinement: devmode
 
 apps:
   edge:
-    command: gimp
+    command: desktop-launch gimp
+    plugs: [x11, unity7, opengl, home, gsettings]
 
 parts:
   babl: 
@@ -32,7 +33,6 @@ parts:
       - --enable-binreloc
       - --enable-gtk-doc-html=no
       - --enable-workshop
-    after: [libmypaint, babl]
     build-packages:
       - autoconf
       - build-essential
@@ -66,6 +66,7 @@ parts:
       - python3-pydot
       - ruby
     #stage-packages:
+    after: [libmypaint, babl]
   gimp:
     source: git://git.gnome.org/gimp
     plugin: autotools
@@ -74,7 +75,6 @@ parts:
       - --disable-python
       - --disable-shared
       - --enable-binreloc
-    after: [babl, gegl, libmypaint, gtkconf]
     build-packages:
       - autoconf-archive
       - build-essential
@@ -93,8 +93,6 @@ parts:
       - libaa1-dev
       - libamd2.4.1
       - libart-2.0-dev
-      - libbabl-0.1-0
-      - libbabl-dev
       - libblas-common
       - libblas3
       - libbz2-dev
@@ -113,7 +111,6 @@ parts:
       - libffi-dev
       - libfontconfig1-dev
       - libgdk-pixbuf2.0-doc
-      - libgegl-dev
       - libgfortran3
       - libgs-dev
       - libgs9
@@ -164,11 +161,7 @@ parts:
       - zlib1g-dev
     stage-packages:
       - gimp-gmic
-  gtkconf:
-    source: https://github.com/dplanella/gtkconf.git
-    plugin: make
-    after: [babl,gegl,libmypaint]
-    build-packages: [dpkg-dev]
+    after: [babl, gegl, libmypaint, desktop/gtk2]
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
