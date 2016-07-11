@@ -1,4 +1,4 @@
-name: gimp-git
+name: gimp-edge
 version: "2.9.3~git"
 license: parts/gimp/build/src/LICENSE.txt
 summary: GNU Image Manipulation Program - www.gimp.org
@@ -11,7 +11,7 @@ description: |
 confinement: devmode
 
 apps:
-  edge:
+  gimp-edge:
     command: desktop-launch gimp
     plugs: [x11, unity7, opengl, home, gsettings]
 
@@ -151,17 +151,12 @@ parts:
       - patchutils
       - pkg-config
       - poppler-data
-      - python-gobject-2
-      - python-gobject-2-dev
-      - python-gtk2-dev
-      - python-pkg-resources
-      - python2.7-dev
       - sgml-data
       - xsltproc
       - zlib1g-dev
     stage-packages:
       - gimp-gmic
-    after: [babl, gegl, libmypaint, desktop/gtk2]
+    after: [babl, gegl, libmypaint] 
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
