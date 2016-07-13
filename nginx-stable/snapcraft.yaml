@@ -10,9 +10,9 @@ confinement: devmode
 
 apps:
   nginx:
-    command: usr/nginx/nginx
-    stop-command: nginx -s quit
-    daemon: simple
+    command: nginx
+    #stop-command: nginx -s quit
+    #daemon: simple
     plugs: [network, network-bind]
 
 parts:
@@ -20,11 +20,11 @@ parts:
     source: http://hg.nginx.org/nginx/archive/default.tar.gz
     plugin: autotools_nginx
     configflags:
-      - --sbin-path=/usr/nginx/nginx
-      - --conf-path=/usr/nginx/nginx.conf
-      - --pid-path=/usr/nginx/nginx.pid
-      - --error-log-path=/log/error.log
-      - --http-log-path=/log/access.log
+      - --sbin-path=/snap/nginx/current/nginx/nginx
+      - --conf-path=/snap/nginx/current/nginx/nginx.conf
+      - --pid-path=/snap/nginx/current/nginx/nginx.pid
+      - --error-log-path=/snap/nginx/current/var/error.log
+      - --http-log-path=/snap/nginx/current/var/access.log
       #- --user=
       #- --group=
       - --with-http_ssl_module
