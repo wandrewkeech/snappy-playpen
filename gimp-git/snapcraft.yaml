@@ -1,5 +1,5 @@
 name: gimp-edge
-version: "2.9.3~git"
+version: "2.9.5~git"
 license: parts/gimp/build/src/LICENSE.txt
 summary: GNU Image Manipulation Program - www.gimp.org
 description: |
