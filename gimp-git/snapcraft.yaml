@@ -75,6 +75,7 @@ parts:
       - --disable-python
       - --disable-shared
       - --enable-binreloc
+      - --enable-vector-icons
     build-packages:
       - autoconf-archive
       - build-essential
