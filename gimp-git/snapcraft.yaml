@@ -66,6 +66,9 @@ parts:
       - python3-pydot
       - ruby
     #stage-packages:
+    #stage:
+      #- usr/lib/
+      #- lib/gegl-0.3\
     after: [libmypaint, babl]
   gimp:
     source: git://git.gnome.org/gimp
@@ -170,3 +173,5 @@ parts:
       - libpng12-dev
       - librsvg2-dev
       - python-gi
+    #stage:
+      #- lib/
