@@ -1,0 +1,33 @@
+name: gimp
+version: "2.9.5"
+#license: parts/gimp/build/src/LICENSE.txt
+summary: GNU Image Manipulation Program - www.gimp.org
+description: |
+  A freely distributed program for such tasks as photo retouching, image
+  composition and image authoring.  Whether you are a graphic designer,
+  photographer, illustrator, or scientist, GIMP provides you with sophisticated
+  tools to get your job done.  You can further enhance your productivity with
+  GIMP thanks to many customization options and 3rd party plugins.
+confinement: devmode
+
+apps:
+  run:
+    #commands: desktop-launch $SNAP/usr/bin/gimp
+    #command: usr/bin/gimp
+    command: gimp-wrapper
+    plugs: [x11, home, gsettings, unity7, network, opengl]
+parts: 
+  gimp:
+    plugin: nil
+    stage-packages:
+     - libbabl-0.1-0
+     - libgegl-0.3-0
+     - gegl
+     - libmypaint
+     - gimp
+     - gimp-gmic
+     - gmic
+  environment:
+    plugin: copy
+    files:
+      gimp.wrapper: usr/bin/gimp-wrapper

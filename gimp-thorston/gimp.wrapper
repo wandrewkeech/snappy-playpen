@@ -1,0 +1,35 @@
+#!/bin/sh
+
+ARCH='x86_64-linux-gnu'
+
+export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH:$LD_LIBRARY_PATH
+# XKB config
+export XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
+# XDG Config
+export XDG_CONFIG_DIRS=/etc/xdg:$XDG_CONFIG_DIRS
+export XDG_CONFIG_DIRS=/usr/xdg:$XDG_CONFIG_DIRS
+# Note: this doesn't seem to work, QML's LocalStorage either ignores
+# or fails to use $SNAP_USER_DATA if defined here
+export XDG_DATA_DIRS=$SNAP_USER_DATA:$XDG_DATA_DIRS
+export XDG_DATA_DIRS=/usr/share:$XDG_DATA_DIRS
+# Not good, needed for fontconfig
+export XDG_DATA_HOME=/usr/share
+# Font Config
+export FONTCONFIG_PATH=/etc/fonts/config.d
+export FONTCONFIG_FILE=//etc/fonts/fonts.conf
+# Tell libGL where to find the drivers
+export LIBGL_DRIVERS_PATH=/usr/lib/$ARCH/dri
+# Necessary for the SDK to find the translations directory
+export APP_DIR=$SNAP
+# ensure the snappy gl libs win
+export LD_LIBRARY_PATH="$SNAP_LIBRARY_PATH:$LD_LIBRARY_PATH"
+
+# Set the execution environment for GIMP
+export SNAP=/snap/gimp/current
+export LD_LIBRARY_PATH="$SNAP_LIBRARY_PATH:$SNAP/usr/lib:$SNAP/usr/lib/x86_64-linux-gnu"
+export GEGL_PATH=/snap/gimp/current/usr/lib/x86_64-linux-gnu/gegl-0.3/
+export BABL_PATH=/snap/gimp/current/usr/lib/x86_64-linux-gnu/babl-0.1/
+export GIMP2_DATADIR=/snap/gimp/current/usr/share/gimp/2.0/
+
+# Start GIMP
+exec /snap/gimp/current/usr/bin/gimp

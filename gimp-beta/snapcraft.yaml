@@ -1,5 +1,5 @@
-name: gimp-edge
-version: "2.9.5~git"
+name: gimp-beta
+version: "2.9.4"
 license: parts/gimp/build/src/LICENSE.txt
 summary: GNU Image Manipulation Program - www.gimp.org
 description: |
@@ -11,7 +11,7 @@ description: |
 confinement: devmode
 
 apps:
-  gimp-edge:
+  gimp-beta:
     command: desktop-launch gimp
     plugs: [x11, unity7, opengl, home, gsettings]
 
@@ -65,23 +65,20 @@ parts:
       - lua5.1
       - python3-pydot
       - ruby
-    #stage-packages:
-    #stage:
-      #- usr/lib/
-      #- lib/gegl-0.3\
-    after: [libmypaint, babl]
+    ##stage-packages:
+    ##stage:
+      ##- usr/lib/
+      ##- lib/gegl-0.3\
+    after: [babl, libmypaint]
   gimp:
-    source: git://git.gnome.org/gimp
+    source: http://download.gimp.org/mirror/pub/gimp/v2.9/gimp-2.9.4.tar.bz2
     plugin: autotools
     configflags: 
       - --disable-gtk-doc
       - --disable-python
       - --disable-shared
       - --enable-binreloc
-      #- --enable-vector-icons
-    filesets:
-      gegl-sharedobjs:
-        - usr/lib/x86_64-linux-gnu/gegl-0.3/
+      - --enable-vector-icons
     build-packages:
       - autoconf-archive
       - build-essential
@@ -161,14 +158,9 @@ parts:
       - sgml-data
       - xsltproc
       - zlib1g-dev
-    stage:
-      - $gegl-sharedobjs
-      - usr/lib/pkg-config
     stage-packages:
       - gimp-gmic
-    snap:
-      - $gegl-sharedobjs
-    after: [babl, gegl, libmypaint, desktop/gtk2] 
+    after: [babl, gegl, libmypaint] 
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
@@ -181,5 +173,5 @@ parts:
       - libpng12-dev
       - librsvg2-dev
       - python-gi
-    #stage:
-      #- lib/
+    ##stage:
+      ##- lib/
