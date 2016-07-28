@@ -67,8 +67,7 @@ parts:
       - ruby
     #stage-packages:
     #stage:
-      #- usr/lib/
-      #- lib/gegl-0.3\
+      #- -lib/*
     after: [libmypaint, babl]
   gimp:
     source: git://git.gnome.org/gimp
@@ -78,10 +77,7 @@ parts:
       - --disable-python
       - --disable-shared
       - --enable-binreloc
-      #- --enable-vector-icons
-    filesets:
-      gegl-sharedobjs:
-        - usr/lib/x86_64-linux-gnu/gegl-0.3/
+      - --enable-vector-icons
     build-packages:
       - autoconf-archive
       - build-essential
@@ -161,14 +157,13 @@ parts:
       - sgml-data
       - xsltproc
       - zlib1g-dev
-    stage:
-      - $gegl-sharedobjs
-      - usr/lib/pkg-config
+    filesets:
+      geglLibs: stage/lib/gegl-0.3/
     stage-packages:
       - gimp-gmic
-    snap:
-      - $gegl-sharedobjs
-    after: [babl, gegl, libmypaint, desktop/gtk2] 
+    stage:
+      - -geglLibs
+    after: [babl, gegl, libmypaint] 
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
