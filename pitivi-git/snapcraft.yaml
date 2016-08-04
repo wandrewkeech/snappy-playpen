@@ -81,5 +81,5 @@ parts:
       - gstreamer1.0-plugins-bad
       - gstreamer1.0-plugins-ugly
     stage:
-      - usr/share/pkgconfig
+      - -usr/share/pkgconfig
     after: [desktop/gtk3]
