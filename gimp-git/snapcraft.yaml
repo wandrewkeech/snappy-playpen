@@ -20,7 +20,8 @@ parts:
   babl: 
     source: git://git.gnome.org/babl
     plugin: autotools
-    configflags: [--disable-docs, --disable-shared]
+    configflags: [--disable-docs]
+    install-via: prefix
     after: [libmypaint]
     build-packages:
       - autoconf
@@ -31,10 +32,9 @@ parts:
     source: git://git.gnome.org/gegl
     plugin: autotools
     configflags: 
-      - --disable-shared
-      - --enable-binreloc
       - --enable-gtk-doc-html=no
       - --enable-workshop
+    install-via: prefix
     build-packages:
       - autoconf
       - build-essential
@@ -75,8 +75,8 @@ parts:
       - --disable-gtk-doc
       - --disable-python
       - --disable-shared
-      - --enable-binreloc
       - --enable-vector-icons
+    install-via: prefix
     build-packages:
       - autoconf-archive
       - build-essential
@@ -162,6 +162,7 @@ parts:
   libmypaint:
     source: git://github.com/mypaint/libmypaint.git
     plugin: autotools
+    install-via: prefix
     build-packages:
       - build-essential
       - intltool
